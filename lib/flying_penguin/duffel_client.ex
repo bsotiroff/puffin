@@ -29,7 +29,7 @@ defmodule FlyingPenguin.DuffelClient do
       "Accept": "application/json",
       "Content-Type": "application/json",
       "Duffel-Version": "beta",
-      "Authorization": "Bearer duffel_test_nHrTAl5zgzFijhbPV0mj4gcXj8n2SjH98J9VlyW4R4G"
+      "Authorization": "Bearer #{System.get_env("DUFFEL_TOKEN")}"
     ]
     case HTTPoison.post("https://api.duffel.com/air/offer_requests", request_body(), request_headers) do
       {:ok, %Response{status_code: 200, body: body }} ->
