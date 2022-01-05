@@ -22,7 +22,7 @@ config :flying_penguin, FlyingPenguinWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "Q1rNg/s+f0xj1F8ID7e1JYerNK3uNUqzQIUt8y7F5+ivoA7sdor9T6vwbrdEfGUE",
+  secret_key_base: System.get_env("FLYING_PENGUIN_KEY_BASE"),
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
