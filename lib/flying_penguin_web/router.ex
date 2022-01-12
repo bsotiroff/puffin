@@ -21,6 +21,12 @@ defmodule FlyingPenguinWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/search", SearchLive.Index, :index
+    live "/search/new", SearchLive.Index, :new
+    live "/search/:id/edit", SearchLive.Index, :edit
+
+    live "/search/:id", SearchLive.Show, :show
+    live "/search/:id/show/edit", SearchLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
