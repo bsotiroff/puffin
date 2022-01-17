@@ -3,18 +3,9 @@ defmodule FlyingPenguinWeb.SearchLive.FormComponent do
 
   alias FlyingPenguin.Flight
 
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, date_of_departure: Date.utc_today(),
-      date_of_return: Date.utc_today() |> Date.add(2),
-      number_of_adults: 1)
-    }
-  end
-
   @impl true
   def update(%{search: search} = assigns, socket) do
     changeset = Flight.change_search(search)
-    IO.inspect socket.assigns
-
     {:ok,
      socket
      |> assign(assigns)
