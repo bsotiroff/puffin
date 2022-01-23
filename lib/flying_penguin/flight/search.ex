@@ -24,7 +24,22 @@ defmodule FlyingPenguin.Flight.Search do
   @doc false
   def changeset(search, attrs) do
     search
-    |> cast(attrs, [:origin, :destination, :date_of_departure, :date_of_return, :seat_class, :number_of_adults])
-    |> validate_required([:origin, :destination, :date_of_departure, :date_of_return, :seat_class, :number_of_adults])
+    |> cast(attrs, [
+      :origin,
+      :destination,
+      :date_of_departure,
+      :date_of_return,
+      :seat_class,
+      :number_of_adults
+    ])
+    |> validate_required([
+      :origin,
+      :destination,
+      :date_of_departure,
+      :date_of_return,
+      :seat_class,
+      :number_of_adults
+    ])
+    |> validate_inclusion(:seat_class, ["economy", "business", "premium_business", "first"])
   end
 end

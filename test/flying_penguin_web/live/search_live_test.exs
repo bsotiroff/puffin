@@ -4,9 +4,30 @@ defmodule FlyingPenguinWeb.SearchLiveTest do
   import Phoenix.LiveViewTest
   import FlyingPenguin.FlightFixtures
 
-  @create_attrs %{date_of_departure: %{day: 10, month: 1, year: 2022}, date_of_return: %{day: 10, month: 1, year: 2022}, destination: "some destination", number_of_adults: 42, origin: "some origin", seat_class: "some seat_class"}
-  @update_attrs %{date_of_departure: %{day: 11, month: 1, year: 2022}, date_of_return: %{day: 11, month: 1, year: 2022}, destination: "some updated destination", number_of_adults: 43, origin: "some updated origin", seat_class: "some updated seat_class"}
-  @invalid_attrs %{date_of_departure: %{day: 30, month: 2, year: 2022}, date_of_return: %{day: 30, month: 2, year: 2022}, destination: nil, number_of_adults: nil, origin: nil, seat_class: nil}
+  @create_attrs %{
+    date_of_departure: %{day: 10, month: 1, year: 2022},
+    date_of_return: %{day: 10, month: 1, year: 2022},
+    destination: "some destination",
+    number_of_adults: 42,
+    origin: "some origin",
+    seat_class: "some seat_class"
+  }
+  @update_attrs %{
+    date_of_departure: %{day: 11, month: 1, year: 2022},
+    date_of_return: %{day: 11, month: 1, year: 2022},
+    destination: "some updated destination",
+    number_of_adults: 43,
+    origin: "some updated origin",
+    seat_class: "some updated seat_class"
+  }
+  @invalid_attrs %{
+    date_of_departure: %{day: 30, month: 2, year: 2022},
+    date_of_return: %{day: 30, month: 2, year: 2022},
+    destination: nil,
+    number_of_adults: nil,
+    origin: nil,
+    seat_class: nil
+  }
 
   defp create_search(_) do
     search = search_fixture()

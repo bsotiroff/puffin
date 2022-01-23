@@ -46,7 +46,10 @@ defmodule FlyingPenguinWeb.Router do
 
     scope "/" do
       pipe_through :browser
-      live_dashboard "/dashboard", metrics: FlyingPenguinWeb.Telemetry, ecto_repos: [FlyingPenguin.Repo]
+
+      live_dashboard "/dashboard",
+        metrics: FlyingPenguinWeb.Telemetry,
+        ecto_repos: [FlyingPenguin.Repo]
     end
   end
 
@@ -83,7 +86,7 @@ defmodule FlyingPenguinWeb.Router do
     post "/users/confirm/:token", UserConfirmationController, :update
   end
 
-  if Mix.env == :dev do
+  if Mix.env() == :dev do
     forward "/sent_emails", Bamboo.SentEmailViewerPlug
   end
 end

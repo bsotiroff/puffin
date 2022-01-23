@@ -49,6 +49,7 @@ defmodule FlyingPenguin.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:calendar, "1.0.0"},
 
       # Additional packages
 
@@ -59,11 +60,10 @@ defmodule FlyingPenguin.MixProject do
       # http client
       {:httpoison, "~> 1.8"},
       {:poison, "~> 5.0"},
-
       {:bcrypt_elixir, "~> 2.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.8", only: :dev},
-      {:ecto_psql_extras, "~> 0.7"},
+      {:ecto_psql_extras, "~> 0.7"}
     ]
   end
 
@@ -79,7 +79,11 @@ defmodule FlyingPenguin.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["cmd --cd assets npm run deploy", "esbuild default --minify", "phx.digest"]
+      "assets.deploy": [
+        "cmd --cd assets npm run deploy",
+        "esbuild default --minify",
+        "phx.digest"
+      ]
     ]
   end
 end

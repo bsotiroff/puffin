@@ -7,7 +7,7 @@
     id="search-form"
     phx-target={@myself}
     phx-change="validate"
-    phx-submit="save">
+    phx-submit="search">
   
     <%= label f, :origin %>
     <%= text_input f, :origin, placeholder: "ord" %>
@@ -34,7 +34,7 @@
     <%= error_tag f, :number_of_adults %>
   
     <div>
-      <%= submit "Save", phx_disable_with: "Saving..." %>
+      <%= submit "Search", phx_disable_with: "Searching..." %>
     </div>
   </.form>
 </div>

@@ -8,7 +8,14 @@ defmodule FlyingPenguin.FlightTest do
 
     import FlyingPenguin.FlightFixtures
 
-    @invalid_attrs %{date_of_departure: nil, date_of_return: nil, destination: nil, number_of_adults: nil, origin: nil, seat_class: nil}
+    @invalid_attrs %{
+      date_of_departure: nil,
+      date_of_return: nil,
+      destination: nil,
+      number_of_adults: nil,
+      origin: nil,
+      seat_class: nil
+    }
 
     test "list_search/0 returns all search" do
       search = search_fixture()
@@ -21,7 +28,14 @@ defmodule FlyingPenguin.FlightTest do
     end
 
     test "create_search/1 with valid data creates a search" do
-      valid_attrs = %{date_of_departure: ~D[2022-01-10], date_of_return: ~D[2022-01-10], destination: "some destination", number_of_adults: 42, origin: "some origin", seat_class: "some seat_class"}
+      valid_attrs = %{
+        date_of_departure: ~D[2022-01-10],
+        date_of_return: ~D[2022-01-10],
+        destination: "some destination",
+        number_of_adults: 42,
+        origin: "some origin",
+        seat_class: "some seat_class"
+      }
 
       assert {:ok, %Search{} = search} = Flight.create_search(valid_attrs)
       assert search.date_of_departure == ~D[2022-01-10]
@@ -38,7 +52,15 @@ defmodule FlyingPenguin.FlightTest do
 
     test "update_search/2 with valid data updates the search" do
       search = search_fixture()
-      update_attrs = %{date_of_departure: ~D[2022-01-11], date_of_return: ~D[2022-01-11], destination: "some updated destination", number_of_adults: 43, origin: "some updated origin", seat_class: "some updated seat_class"}
+
+      update_attrs = %{
+        date_of_departure: ~D[2022-01-11],
+        date_of_return: ~D[2022-01-11],
+        destination: "some updated destination",
+        number_of_adults: 43,
+        origin: "some updated origin",
+        seat_class: "some updated seat_class"
+      }
 
       assert {:ok, %Search{} = search} = Flight.update_search(search, update_attrs)
       assert search.date_of_departure == ~D[2022-01-11]

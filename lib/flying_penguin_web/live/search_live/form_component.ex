@@ -2,6 +2,7 @@ defmodule FlyingPenguinWeb.SearchLive.FormComponent do
   use FlyingPenguinWeb, :live_component
 
   alias FlyingPenguin.Flight
+  alias FlyingPenguin.Duffel.Client
 
   @impl true
   def update(%{search: search} = assigns, socket) do
@@ -22,7 +23,9 @@ defmodule FlyingPenguinWeb.SearchLive.FormComponent do
     {:noreply, assign(socket, :changeset, changeset)}
   end
 
-  def handle_event("save", %{"search" => search_params}, socket) do
+  def handle_event("search", %{"search" => search_params}, socket) do
+    IO.inspect search_params, label: "THESE ARE THE SEARCH PARAMS IN COMPONENT ~~~~~~~~~~~~~~~~~~~~~~~~"
+    Client.get_offers(search_params)
     save_search(socket, socket.assigns.action, search_params)
   end
 

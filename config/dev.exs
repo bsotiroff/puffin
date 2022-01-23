@@ -81,5 +81,4 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-config :flying_penguin, FlyingPenguin.Mailer,
-  adapter: Bamboo.LocalAdapter
+config :flying_penguin, FlyingPenguin.Mailer, adapter: Bamboo.LocalAdapter
