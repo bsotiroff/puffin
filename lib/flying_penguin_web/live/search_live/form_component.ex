@@ -24,7 +24,6 @@ defmodule FlyingPenguinWeb.SearchLive.FormComponent do
   end
 
   def handle_event("search", %{"search" => search_params}, socket) do
-    IO.inspect search_params, label: "THESE ARE THE SEARCH PARAMS IN COMPONENT ~~~~~~~~~~~~~~~~~~~~~~~~"
     Client.get_offers(search_params)
     save_search(socket, socket.assigns.action, search_params)
   end
