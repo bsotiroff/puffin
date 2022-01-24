@@ -12,7 +12,7 @@ defmodule FlyingPenguin.Accounts.UserNotifier do
       |> subject(subject)
       |> text_body(body)
 
-    with {:ok, _metadata} <- Mailer.deliver(email) do
+    with {:ok, _metadata} <- Mailer.deliver_now(email) do
       {:ok, email}
     end
   end
