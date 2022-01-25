@@ -12,9 +12,8 @@ defmodule FlyingPenguin.Accounts.UserNotifier do
       |> subject(subject)
       |> text_body(body)
 
-    with {:ok, _metadata} <- Mailer.deliver(email) do
-      {:ok, email}
-    end
+    # Mailer.deliver_now(email)
+    {:ok, email}
   end
 
   @doc """
