@@ -11,12 +11,12 @@ defmodule FlyingPenguin.FlightFixtures do
     {:ok, search} =
       attrs
       |> Enum.into(%{
-        date_of_departure: ~D[2022-01-10],
-        date_of_return: ~D[2022-01-10],
-        destination: "some destination",
+        date_of_departure: ~D[2023-01-10],
+        date_of_return: ~D[2023-01-10],
+        destination: "BKK",
         number_of_adults: 42,
-        origin: "some origin",
-        seat_class: "some seat_class"
+        origin: "ORD",
+        seat_class: "economy"
       })
       |> FlyingPenguin.Flight.create_search()
 

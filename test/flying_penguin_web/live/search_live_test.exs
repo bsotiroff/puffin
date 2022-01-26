@@ -5,28 +5,28 @@ defmodule FlyingPenguinWeb.SearchLiveTest do
   import FlyingPenguin.FlightFixtures
 
   @create_attrs %{
-    date_of_departure: %{day: 10, month: 1, year: 2022},
-    date_of_return: %{day: 10, month: 1, year: 2022},
-    destination: "some destination",
-    number_of_adults: 42,
-    origin: "some origin",
-    seat_class: "some seat_class"
+    date_of_departure: %{day: 10, month: 1, year: 2023},
+    date_of_return: %{day: 10, month: 1, year: 2023},
+    destination: "ORD",
+    number_of_adults: 2,
+    origin: "BKK",
+    seat_class: "economy"
   }
   @update_attrs %{
-    date_of_departure: %{day: 11, month: 1, year: 2022},
-    date_of_return: %{day: 11, month: 1, year: 2022},
-    destination: "some updated destination",
-    number_of_adults: 43,
-    origin: "some updated origin",
-    seat_class: "some updated seat_class"
+    date_of_departure: %{day: 11, month: 1, year: 2023},
+    date_of_return: %{day: 11, month: 1, year: 2023},
+    destination: "YVR",
+    number_of_adults: 5,
+    origin: "MDW",
+    seat_class: "business"
   }
   @invalid_attrs %{
     date_of_departure: %{day: 30, month: 2, year: 2022},
     date_of_return: %{day: 30, month: 2, year: 2022},
-    destination: nil,
+    destination: "sunny beach",
     number_of_adults: nil,
-    origin: nil,
-    seat_class: nil
+    origin: "airport",
+    seat_class: "first"
   }
 
   defp create_search(_) do
@@ -63,7 +63,7 @@ defmodule FlyingPenguinWeb.SearchLiveTest do
         |> follow_redirect(conn, Routes.search_index_path(conn, :index))
 
       assert html =~ "Search created successfully"
-      assert html =~ "some destination"
+      assert html =~ "ORD"
     end
 
     test "updates search in listing", %{conn: conn, search: search} do
@@ -85,7 +85,7 @@ defmodule FlyingPenguinWeb.SearchLiveTest do
         |> follow_redirect(conn, Routes.search_index_path(conn, :index))
 
       assert html =~ "Search updated successfully"
-      assert html =~ "some updated destination"
+      assert html =~ "YVR"
     end
 
     test "deletes search in listing", %{conn: conn, search: search} do
@@ -125,7 +125,7 @@ defmodule FlyingPenguinWeb.SearchLiveTest do
         |> follow_redirect(conn, Routes.search_show_path(conn, :show, search))
 
       assert html =~ "Search updated successfully"
-      assert html =~ "some updated destination"
+      assert html =~ "YVR"
     end
   end
 end

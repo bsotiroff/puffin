@@ -31,19 +31,19 @@ defmodule FlyingPenguin.FlightTest do
       valid_attrs = %{
         date_of_departure: ~D[2022-01-10],
         date_of_return: ~D[2022-01-10],
-        destination: "some destination",
-        number_of_adults: 42,
-        origin: "some origin",
-        seat_class: "some seat_class"
+        destination: "BKK",
+        number_of_adults: 3,
+        origin: "ORD",
+        seat_class: "business"
       }
 
       assert {:ok, %Search{} = search} = Flight.create_search(valid_attrs)
       assert search.date_of_departure == ~D[2022-01-10]
       assert search.date_of_return == ~D[2022-01-10]
-      assert search.destination == "some destination"
-      assert search.number_of_adults == 42
-      assert search.origin == "some origin"
-      assert search.seat_class == "some seat_class"
+      assert search.destination == "BKK"
+      assert search.number_of_adults == 3
+      assert search.origin == "ORD"
+      assert search.seat_class == "business"
     end
 
     test "create_search/1 with invalid data returns error changeset" do
@@ -56,19 +56,19 @@ defmodule FlyingPenguin.FlightTest do
       update_attrs = %{
         date_of_departure: ~D[2022-01-11],
         date_of_return: ~D[2022-01-11],
-        destination: "some updated destination",
-        number_of_adults: 43,
-        origin: "some updated origin",
-        seat_class: "some updated seat_class"
+        destination: "YVR",
+        number_of_adults: 5,
+        origin: "MDW",
+        seat_class: "economy"
       }
 
       assert {:ok, %Search{} = search} = Flight.update_search(search, update_attrs)
       assert search.date_of_departure == ~D[2022-01-11]
       assert search.date_of_return == ~D[2022-01-11]
-      assert search.destination == "some updated destination"
-      assert search.number_of_adults == 43
-      assert search.origin == "some updated origin"
-      assert search.seat_class == "some updated seat_class"
+      assert search.destination == "YVR"
+      assert search.number_of_adults == 5
+      assert search.origin == "MDW"
+      assert search.seat_class == "economy"
     end
 
     test "update_search/2 with invalid data returns error changeset" do
