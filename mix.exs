@@ -54,7 +54,7 @@ defmodule FlyingPenguin.MixProject do
       # Additional packages
 
       # Bamboo for Emailing
-      {:bamboo, "~> 1.5"},
+      {:bamboo, "~> 2.2"},
       {:premailex, "~> 0.3.0"},
 
       # http client
