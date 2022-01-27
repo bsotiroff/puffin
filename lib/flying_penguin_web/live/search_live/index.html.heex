@@ -1,0 +1,49 @@
+<h1>Listing Search</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.search_index_path(@socket, :index)}>
+    <.live_component
+      module={FlyingPenguinWeb.SearchLive.FormComponent}
+      id={@search.id || :new}
+      title={@page_title}
+      action={@live_action}
+      search={@search}
+      return_to={Routes.search_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Origin</th>
+      <th>Destination</th>
+      <th>Date of departure</th>
+      <th>Date of return</th>
+      <th>Seat class</th>
+      <th>Number of adults</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="search">
+    <%= for search <- @search_collection do %>
+      <tr id={"search-#{search.id}"}>
+        <td><%= search.origin %></td>
+        <td><%= search.destination %></td>
+        <td><%= search.date_of_departure %></td>
+        <td><%= search.date_of_return %></td>
+        <td><%= search.seat_class %></td>
+        <td><%= search.number_of_adults %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.search_show_path(@socket, :show, search) %></span>
+          <span><%= live_patch "Edit", to: Routes.search_index_path(@socket, :edit, search) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: search.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Search", to: Routes.search_index_path(@socket, :new) %></span>

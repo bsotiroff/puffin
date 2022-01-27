@@ -1,0 +1,40 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="search-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="search">
+  
+    <%= label f, :origin %>
+    <%= text_input f, :origin, placeholder: "ord" %>
+    <%= error_tag f, :origin %>
+  
+    <%= label f, :destination %>
+    <%= text_input f, :destination, placeholder: "bkk" %>
+    <%= error_tag f, :destination %>
+  
+    <%= label f, :date_of_departure %>
+    <%= date_select f, :date_of_departure, default: DateTime.utc_now() %>
+    <%= error_tag f, :date_of_departure %>
+  
+    <%= label f, :date_of_return %>
+    <%= date_select f, :date_of_return, default: DateTime.utc_now() |> DateTime.add(3 * 60 * 60 * 24, :second) %>
+    <%= error_tag f, :date_of_return %>
+  
+    <%= label f, :seat_class %>
+    <%= select f, :seat_class, [economy: "economy", "premium economy": "premium_economy", business: "business", first: "first"] , selected: :economy %>
+    <%= error_tag f, :seat_class %>
+  
+    <%= label f, :number_of_adults %>
+    <%= number_input f, :number_of_adults, value: 1 %>
+    <%= error_tag f, :number_of_adults %>
+  
+    <div>
+      <%= submit "Search", phx_disable_with: "Searching..." %>
+    </div>
+  </.form>
+</div>

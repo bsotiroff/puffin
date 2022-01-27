@@ -14,7 +14,7 @@ defmodule FlyingPenguin.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: FlyingPenguin.PubSub},
       # Start the Endpoint (http/https)
-      FlyingPenguinWeb.Endpoint,
+      FlyingPenguinWeb.Endpoint
       # Start a worker by calling: FlyingPenguin.Worker.start_link(arg)
       # {FlyingPenguin.Worker, arg}
     ]

@@ -21,6 +21,12 @@ defmodule FlyingPenguinWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/search", SearchLive.Index, :index
+    live "/search/new", SearchLive.Index, :new
+    live "/search/:id/edit", SearchLive.Index, :edit
+
+    live "/search/:id", SearchLive.Show, :show
+    live "/search/:id/show/edit", SearchLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
@@ -40,7 +46,10 @@ defmodule FlyingPenguinWeb.Router do
 
     scope "/" do
       pipe_through :browser
-      live_dashboard "/dashboard", metrics: FlyingPenguinWeb.Telemetry, ecto_repos: [FlyingPenguin.Repo]
+
+      live_dashboard "/dashboard",
+        metrics: FlyingPenguinWeb.Telemetry,
+        ecto_repos: [FlyingPenguin.Repo]
     end
   end
 
@@ -77,7 +86,7 @@ defmodule FlyingPenguinWeb.Router do
     post "/users/confirm/:token", UserConfirmationController, :update
   end
 
-  if Mix.env == :dev do
+  if Mix.env() == :dev do
     forward "/sent_emails", Bamboo.SentEmailViewerPlug
   end
 end
