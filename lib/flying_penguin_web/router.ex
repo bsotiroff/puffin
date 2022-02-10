@@ -22,7 +22,7 @@ defmodule FlyingPenguinWeb.Router do
 
     live "/", PageLive, :index
     live "/search", SearchLive.Index, :index
-    live "/search/new", SearchLive.Index, :new
+    live "/search/new", SearchLive.New, :new
     live "/search/:id/edit", SearchLive.Index, :edit
 
     live "/search/:id", SearchLive.Show, :show

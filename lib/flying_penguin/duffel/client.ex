@@ -2,6 +2,7 @@ defmodule FlyingPenguin.Duffel.Client do
   alias HTTPoison.Response
   alias HTTPoison.Error
   alias FlyingPenguin.Duffel.Request
+  # alias FlyingPenguin.Duffel.Response, as: DuffelResponse
 
   # def request_body do
   #   Poison.encode!(%{
@@ -33,29 +34,31 @@ defmodule FlyingPenguin.Duffel.Client do
       "Authorization": "Bearer #{System.get_env("DUFFEL_TOKEN")}"
     ]
 
-    case HTTPoison.post("https://api.duffel.com/air/offer_requests", request_body(search_params), request_headers) do
+    response = case HTTPoison.post("https://api.duffel.com/air/offer_requests?return_offers=true", request_body(search_params), request_headers) do
       {:ok, %Response{status_code: 200, body: body }} ->
         IO.puts body
       {:ok, %Response{status_code: 201, body: raw }} ->
         IO.puts "it was a 201!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         raw
         |> :zlib.gunzip
-        |> Poison.decode(keys: :atoms)
+        |> Poison.decode(keys: :atoms) |> IO.inspect()
       {:ok, %Response{status_code: 422, body: raw }} ->
         IO.puts "It Was a 422 :(((((((((((((((((((((((((((((((((((((((((("
         IO.puts raw
         |> :zlib.gunzip
-        |> Poison.decode(keys: :atoms)
+        |> Poison.decode(keys: :atoms) |> IO.inspect()
       {:ok, %Response{status_code: 404}} ->
         IO.puts "Not found :("
       {:error, %Error{reason: reason}} ->
+        IO.inspect "there was an error"
         IO.inspect reason
     end
+    response
   end
 
   defp request_body(search_params) do
     build_request(search_params)
-    |> wrap_request()
+    |> wrap_request() |> IO.inspect()
   end
 
   defp build_request(search_params) do
