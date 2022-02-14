@@ -34,7 +34,7 @@ defmodule FlyingPenguin.Duffel.Client do
       "Authorization": "Bearer #{System.get_env("DUFFEL_TOKEN")}"
     ]
 
-    response = case HTTPoison.post("https://api.duffel.com/air/offer_requests?return_offers=true", request_body(search_params), request_headers) do
+    response = case HTTPoison.post("https://api.duffel.com/air/offer_requests?return_offers=true", request_body(search_params), request_headers, [recv_timeout: 20000]) do
       {:ok, %Response{status_code: 200, body: body }} ->
         IO.puts body
       {:ok, %Response{status_code: 201, body: raw }} ->
