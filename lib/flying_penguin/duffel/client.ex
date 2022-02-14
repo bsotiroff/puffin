@@ -34,31 +34,30 @@ defmodule FlyingPenguin.Duffel.Client do
       "Authorization": "Bearer #{System.get_env("DUFFEL_TOKEN")}"
     ]
 
-    response = case HTTPoison.post("https://api.duffel.com/air/offer_requests?return_offers=true", request_body(search_params), request_headers, [recv_timeout: 20000]) do
+    case HTTPoison.post("https://api.duffel.com/air/offer_requests?return_offers=true", request_body(search_params), request_headers, [recv_timeout: 20000]) do
       {:ok, %Response{status_code: 200, body: body }} ->
         IO.puts body
       {:ok, %Response{status_code: 201, body: raw }} ->
         IO.puts "it was a 201!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         raw
         |> :zlib.gunzip
-        |> Poison.decode(keys: :atoms) |> IO.inspect()
+        |> Poison.decode(keys: :atoms)
       {:ok, %Response{status_code: 422, body: raw }} ->
         IO.puts "It Was a 422 :(((((((((((((((((((((((((((((((((((((((((("
         IO.puts raw
         |> :zlib.gunzip
-        |> Poison.decode(keys: :atoms) |> IO.inspect()
+        |> Poison.decode(keys: :atoms)
       {:ok, %Response{status_code: 404}} ->
         IO.puts "Not found :("
       {:error, %Error{reason: reason}} ->
         IO.inspect "there was an error"
         IO.inspect reason
     end
-    response
   end
 
   defp request_body(search_params) do
     build_request(search_params)
-    |> wrap_request() |> IO.inspect()
+    |> wrap_request()
   end
 
   defp build_request(search_params) do
