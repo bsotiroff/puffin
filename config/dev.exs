@@ -18,7 +18,10 @@ config :flying_penguin, FlyingPenguin.Repo,
 config :flying_penguin, FlyingPenguinWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {127, 0, 0, 1}, port: 4000,
+    protocol_options: [
+      request_timeout: 20_000
+    ]],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
@@ -68,6 +71,14 @@ config :flying_penguin, FlyingPenguinWeb.Endpoint,
       ~r"priv/gettext/.*(po)$",
       ~r"lib/flying_penguin_web/(live|views)/.*(ex)$",
       ~r"lib/flying_penguin_web/templates/.*(eex)$"
+    ]
+  ],
+  http: [
+    port: 4000,
+    protocol_options: [
+      request_timeout: 20_000,
+      inactivity_timeout: 300_000, # default
+      idle_timeout: 60_000         # default
     ]
   ]
 

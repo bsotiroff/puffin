@@ -2,6 +2,7 @@ defmodule FlyingPenguin.Duffel.Client do
   alias HTTPoison.Response
   alias HTTPoison.Error
   alias FlyingPenguin.Duffel.Request
+  # alias FlyingPenguin.Duffel.Response, as: DuffelResponse
 
   # def request_body do
   #   Poison.encode!(%{
@@ -33,7 +34,7 @@ defmodule FlyingPenguin.Duffel.Client do
       "Authorization": "Bearer #{System.get_env("DUFFEL_TOKEN")}"
     ]
 
-    case HTTPoison.post("https://api.duffel.com/air/offer_requests", request_body(search_params), request_headers) do
+    case HTTPoison.post("https://api.duffel.com/air/offer_requests?return_offers=true", request_body(search_params), request_headers, [recv_timeout: 20000]) do
       {:ok, %Response{status_code: 200, body: body }} ->
         IO.puts body
       {:ok, %Response{status_code: 201, body: raw }} ->
@@ -49,6 +50,7 @@ defmodule FlyingPenguin.Duffel.Client do
       {:ok, %Response{status_code: 404}} ->
         IO.puts "Not found :("
       {:error, %Error{reason: reason}} ->
+        IO.inspect "there was an error"
         IO.inspect reason
     end
   end
