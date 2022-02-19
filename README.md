@@ -1,5 +1,10 @@
 # FlyingPenguin
 
+Make sure you have [asdf](https://asdf-vm.com/guide/getting-started.html#_1-install-dependencies) installed
+
+Install all of the relevant versions of elixir, erlang and nodejs with asdf
+  * `asdf install`
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
