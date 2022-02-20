@@ -9,19 +9,19 @@
     phx-submit="search">
   
     <%= label f, :origin %>
-    <%= text_input f, :origin, placeholder: "ord" %>
+    <%= text_input f, :origin, value: "ORD" %>
     <%= error_tag f, :origin %>
   
     <%= label f, :destination %>
-    <%= text_input f, :destination, placeholder: "bkk" %>
+    <%= text_input f, :destination, value: "ATL" %>
     <%= error_tag f, :destination %>
   
     <%= label f, :date_of_departure %>
-    <%= date_select f, :date_of_departure, default: DateTime.utc_now() %>
+    <%= date_select f, :date_of_departure, default: DateTime.utc_now() |> DateTime.add(150 * 60 * 60 * 24, :second)%>
     <%= error_tag f, :date_of_departure %>
   
     <%= label f, :date_of_return %>
-    <%= date_select f, :date_of_return, default: DateTime.utc_now() |> DateTime.add(3 * 60 * 60 * 24, :second) %>
+    <%= date_select f, :date_of_return, default: DateTime.utc_now() |> DateTime.add(180 * 60 * 60 * 24, :second) %>
     <%= error_tag f, :date_of_return %>
   
     <%= label f, :seat_class %>
@@ -38,4 +38,4 @@
   </.form>
 </div>
 
-<%= {:ok, v} = Access.fetch(assigns, :response); v %>
+<pre><%= Poison.encode!(@response, pretty: true) %></pre>
