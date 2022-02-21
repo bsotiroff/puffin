@@ -2,28 +2,8 @@ defmodule FlyingPenguin.Duffel.Client do
   alias HTTPoison.Response
   alias HTTPoison.Error
   alias FlyingPenguin.Duffel.Request
-  # alias FlyingPenguin.Duffel.Response, as: DuffelResponse
-
-  # def request_body do
-  #   Poison.encode!(%{
-  #     data: %{
-  #       slices: [
-  #         %{
-  #           origin: "NYC",
-  #           destination: "ATL",
-  #           departure_date: "2022-06-21"
-  #         },
-  #         %{
-  #           origin: "ATL",
-  #           destination: "NYC",
-  #           departure_date: "2022-07-21"
-  #         }
-  #       ],
-  #       passengers: [ %{ type: "adult" }, %{ type: "adult" }, %{ age: 1 }],
-  #       cabin_class: "business"
-  #     }
-  #   })
-  # end
+  alias FlyingPenguin.Duffel.Response, as: DuffelResponse
+  alias FlyingPenguin.Duffel.Offer, as: DuffelOffer
 
   def get_offers(search_params) do
     request_headers = [
@@ -55,6 +35,21 @@ defmodule FlyingPenguin.Duffel.Client do
     end
   end
 
+  def parse_response(response) do
+    %DuffelResponse{}
+    |> Map.put(:cabin_class, response[:cabin_class])
+    |> Map.put(:duffel_offers, parse_offers(response[:offers]))
+    |> IO.inspect()
+  end
+
+  defp parse_offers(offers) do
+    Enum.map(offers, fn elem ->
+      %DuffelOffer{}
+      |> Map.put(:base_amount, elem[:base_amount])
+      |> Map.put(:carrier, elem[:owner][:name])
+    end)
+  end
+
   defp request_body(search_params) do
     build_request(search_params)
     |> wrap_request()
@@ -73,7 +68,8 @@ defmodule FlyingPenguin.Duffel.Client do
         departure_date: map_to_iso8601(search_params["date_of_return"])
       }
     ]
-    passengers = Enum.map(1..String.to_integer(search_params["number_of_adults"]), fn _x -> %{ type: "adult" } end)
+    passengers = Enum.map(List.duplicate(:elem, String.to_integer(search_params["number_of_adults"])), fn _x -> %{ type: "adult" } end)
+    IO.inspect(passengers, label: "passengers")
     %Request{}
     |> Map.put(:slices, slices)
     |> Map.put(:cabin_class, search_params["seat_class"])

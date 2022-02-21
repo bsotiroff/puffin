@@ -38,4 +38,10 @@
   </.form>
 </div>
 
+<%= if @response != "response" do%>
+  <%= for offer <- @response.duffel_offers do %>
+    <%= offer.carrier %>
+    <%= offer.base_amount %>
+  <% end %>
+<% end %>
 <pre><%= Poison.encode!(@response, pretty: true) %></pre>
