@@ -1,0 +1,217 @@
+{
+  "data": {
+    "updated_at": "2022-02-22T17:49:58.920758Z",
+    "total_emissions_kg": "671",
+    "total_currency": "USD",
+    "total_amount": "611.09",
+    "tax_currency": "USD",
+    "tax_amount": "93.22",
+    "slices": [
+      {
+        "segments": [
+          {
+            "passengers": [
+              {
+                "passenger_id": "pas_0000AGk2uqpGOuXMnj69ch",
+                "fare_basis_code": "Y20LGTN2",
+                "cabin_class_marketing_name": "Economy",
+                "cabin_class": "economy",
+                "baggages": [
+                  {
+                    "type": "checked",
+                    "quantity": 1
+                  }
+                ]
+              }
+            ],
+            "origin_terminal": "2",
+            "origin": {
+              "type": "airport",
+              "time_zone": "America/Chicago",
+              "name": "O'Hare International Airport",
+              "longitude": -87.90606,
+              "latitude": 41.976381,
+              "id": "arp_ord_us",
+              "icao_code": "KORD",
+              "iata_country_code": "US",
+              "iata_code": "ORD",
+              "iata_city_code": "CHI",
+              "city_name": "Chicago",
+              "city": {
+                "type": "city",
+                "time_zone": null,
+                "name": "Chicago",
+                "longitude": null,
+                "latitude": null,
+                "id": "cit_chi_us",
+                "icao_code": null,
+                "iata_country_code": "US",
+                "iata_code": "CHI",
+                "iata_city_code": "CHI",
+                "city_name": null
+              },
+              "airports": null
+            },
+            "operating_carrier_flight_number": "0431",
+            "operating_carrier": {
+              "name": "Duffel Airways",
+              "id": "arl_00009VME7D6ivUu8dn35WK",
+              "iata_code": "ZZ"
+            },
+            "marketing_carrier_flight_number": "0431",
+            "marketing_carrier": {
+              "name": "Duffel Airways",
+              "id": "arl_00009VME7D6ivUu8dn35WK",
+              "iata_code": "ZZ"
+            },
+            "id": "seg_0000AGk2urJ2cCMAI51w2L",
+            "duration": "PT2H1M",
+            "distance": "1076.1967276377422",
+            "destination_terminal": "1",
+            "destination": {
+              "type": "airport",
+              "time_zone": "America/New_York",
+              "name": "Hartsfield-Jackson Atlanta International Airport",
+              "longitude": -84.4279,
+              "latitude": 33.638714,
+              "id": "arp_atl_us",
+              "icao_code": "KATL",
+              "iata_country_code": "US",
+              "iata_code": "ATL",
+              "iata_city_code": "ATL",
+              "city_name": "Atlanta",
+              "city": {
+                "type": "city",
+                "time_zone": null,
+                "name": "Atlanta",
+                "longitude": null,
+                "latitude": null,
+                "id": "cit_atl_us",
+                "icao_code": null,
+                "iata_country_code": "US",
+                "iata_code": "ATL",
+                "iata_city_code": "ATL",
+                "city_name": null
+              },
+              "airports": null
+            },
+            "departing_at": "2022-07-22T23:00:00",
+            "arriving_at": "2022-07-23T01:01:00",
+            "aircraft": {
+              "name": "Boeing 777-300",
+              "id": "arc_00009VMF8AhXSSRnQDI6HE",
+              "iata_code": "773"
+            }
+          }
+        ],
+        "origin_type": "airport",
+        "origin": {
+          "type": "airport",
+          "time_zone": "America/Chicago",
+          "name": "O'Hare International Airport",
+          "longitude": -87.90606,
+          "latitude": 41.976381,
+          "id": "arp_ord_us",
+          "icao_code": "KORD",
+          "iata_country_code": "US",
+          "iata_code": "ORD",
+          "iata_city_code": "CHI",
+          "city_name": "Chicago",
+          "city": {
+            "type": "city",
+            "time_zone": null,
+            "name": "Chicago",
+            "longitude": null,
+            "latitude": null,
+            "id": "cit_chi_us",
+            "icao_code": null,
+            "iata_country_code": "US",
+            "iata_code": "CHI",
+            "iata_city_code": "CHI",
+            "city_name": null
+          },
+          "airports": null
+        },
+        "id": "sli_0000AGk2urJ2cCMAI51w2Q",
+        "fare_brand_name": "Basic",
+        "duration": "PT2H1M",
+        "destination_type": "airport",
+        "destination": {
+          "type": "airport",
+          "time_zone": "America/New_York",
+          "name": "Hartsfield-Jackson Atlanta International Airport",
+          "longitude": -84.4279,
+          "latitude": 33.638714,
+          "id": "arp_atl_us",
+          "icao_code": "KATL",
+          "iata_country_code": "US",
+          "iata_code": "ATL",
+          "iata_city_code": "ATL",
+          "city_name": "Atlanta",
+          "city": {
+            "type": "city",
+            "time_zone": null,
+            "name": "Atlanta",
+            "longitude": null,
+            "latitude": null,
+            "id": "cit_atl_us",
+            "icao_code": null,
+            "iata_country_code": "US",
+            "iata_code": "ATL",
+            "iata_city_code": "ATL",
+            "city_name": null
+          },
+          "airports": null
+        },
+        "conditions": {
+          "change_before_departure": {
+            "penalty_currency": "GBP",
+            "penalty_amount": "80.00",
+            "allowed": true
+          }
+        }
+      }
+    ],
+    "payment_requirements": {
+      "requires_instant_payment": false,
+      "price_guarantee_expires_at": "2022-02-24T17:25:48Z",
+      "payment_required_by": "2022-02-25T17:25:48Z"
+    },
+    "passengers": [
+      {
+        "type": "adult",
+        "loyalty_programme_accounts": [],
+        "id": "pas_0000AGk2uqpGOuXMnj69ch",
+        "given_name": null,
+        "family_name": null,
+        "age": null
+      }
+    ],
+    "passenger_identity_documents_required": false,
+    "owner": {
+      "name": "Duffel Airways",
+      "id": "arl_00009VME7D6ivUu8dn35WK",
+      "iata_code": "ZZ"
+    },
+    "live_mode": false,
+    "id": "off_0000AGk2urJkZYvKKHMV8u",
+    "expires_at": "2022-02-22T17:55:48.025772Z",
+    "created_at": "2022-02-22T17:25:48.030544Z",
+    "conditions": {
+      "refund_before_departure": {
+        "penalty_currency": "GBP",
+        "penalty_amount": "80.00",
+        "allowed": true
+      },
+      "change_before_departure": {
+        "penalty_currency": "GBP",
+        "penalty_amount": "80.00",
+        "allowed": true
+      }
+    },
+    "base_currency": "USD",
+    "base_amount": "517.87",
+    "available_services": [],
+    "allowed_passenger_identity_document_types": []
+  }
+}

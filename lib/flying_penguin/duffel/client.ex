@@ -36,18 +36,38 @@ defmodule FlyingPenguin.Duffel.Client do
   end
 
   def parse_response(response) do
+    IO.inspect(response[:id], label: "offer request id")
     %DuffelResponse{}
     |> Map.put(:cabin_class, response[:cabin_class])
     |> Map.put(:duffel_offers, parse_offers(response[:offers]))
-    |> IO.inspect()
   end
 
   defp parse_offers(offers) do
-    Enum.map(offers, fn elem ->
+    Enum.map(offers, fn offer ->
       %DuffelOffer{}
-      |> Map.put(:base_amount, elem[:base_amount])
-      |> Map.put(:carrier, elem[:owner][:name])
+      |> Map.put(:base_amount, offer[:base_amount])
+      |> Map.put(:carrier, offer[:owner][:name])
+      |> Map.put(:departing_at, get_first_departure_time(offer))
+      |> Map.put(:arriving_at, get_final_arrival_time(offer))
+      |> Map.put(:number_of_stops, get_stops(offer))
     end)
+  end
+
+  defp get_stops(offer) do
+    # Enum.map(offer[:slices], fn slice ->
+    #   IO.inspect(slice[:segments].length)
+    # end)
+    Enum.reduce(offer.slices, fn slice, acc ->
+      Enum.min(acc, slice.segments.length - 1)
+    end)
+  end
+
+  defp get_first_departure_time(offer) do
+
+  end
+
+  defp get_final_arrival_time(offer) do
+
   end
 
   defp request_body(search_params) do
@@ -62,14 +82,13 @@ defmodule FlyingPenguin.Duffel.Client do
         destination: search_params["destination"],
         departure_date: map_to_iso8601(search_params["date_of_departure"])
       },
-      %{
-        origin: search_params["destination"],
-        destination: search_params["origin"],
-        departure_date: map_to_iso8601(search_params["date_of_return"])
-      }
+      # %{
+      #   origin: search_params["destination"],
+      #   destination: search_params["origin"],
+      #   departure_date: map_to_iso8601(search_params["date_of_return"])
+      # }
     ]
     passengers = Enum.map(List.duplicate(:elem, String.to_integer(search_params["number_of_adults"])), fn _x -> %{ type: "adult" } end)
-    IO.inspect(passengers, label: "passengers")
     %Request{}
     |> Map.put(:slices, slices)
     |> Map.put(:cabin_class, search_params["seat_class"])
