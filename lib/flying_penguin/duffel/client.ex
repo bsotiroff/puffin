@@ -57,17 +57,23 @@ defmodule FlyingPenguin.Duffel.Client do
     # Enum.map(offer[:slices], fn slice ->
     #   IO.inspect(slice[:segments].length)
     # end)
-    Enum.reduce(offer.slices, fn slice, acc ->
-      Enum.min(acc, slice.segments.length - 1)
-    end)
+    # Enum.reduce(offer.slices, fn slice, acc ->
+    #   Enum.min(acc, slice.segments.length - 1)
+    # end)
+    [ slice | _] = offer.slices
+    length(slice.segments) - 1
   end
 
   defp get_first_departure_time(offer) do
-
+    [ slice | _] = offer.slices
+    [segment | _] = slice.segments
+    segment[:departing_at]
   end
 
   defp get_final_arrival_time(offer) do
-
+    [ slice | _] = offer.slices
+    [_ | segment] = slice.segments # this assumes that the segments are in chronological order. I'm not sure if that's the case
+    segment[:arriving_at]
   end
 
   defp request_body(search_params) do
